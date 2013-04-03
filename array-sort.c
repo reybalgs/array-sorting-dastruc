@@ -64,16 +64,31 @@ void bubbleSort(int array[], int arraySize) {
     /**
      * The bubble sorting algorithm.
      */
-    int i, j, temp;
+    int i, j, k, temp;
+    int tempArray[arraySize];
+    
+    // Transfer the contents of the array to a temp array
+    for(i = 0; i < arraySize; i++) {
+        tempArray[i] = array[i];
+    }
+   
+    // Display the priginal array
+    printf("\nOriginal Array:\n");
+    displayArray(tempArray, arraySize);
+
+    k = 1;
     for(i = arraySize - 1; i > 0; i--) {
         for(j = 0; j < i; j++) {
-            if(array[j] > array[j + 1]) {
+            if(tempArray[j] > tempArray[j + 1]) {
                 // Swap the values
-                temp = array[j + 1];
-                array[j + 1] = array[j];
-                array[j] = temp;
+                temp = tempArray[j + 1];
+                tempArray[j + 1] = tempArray[j];
+                tempArray[j] = temp;
             }
         }
+        printf("\nArray after iteration %d:\n", k);
+        displayArray(tempArray, arraySize);
+        k = k + 1;
     }
 }
 
