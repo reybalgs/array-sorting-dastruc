@@ -29,37 +29,86 @@ void insertionSort(int array[], int arraySize) {
     /** 
      * The insertion sorting algorithm.
      */
-    int i, j, B;
+    int i, j, k, B;
+    int tempArray[arraySize];
+
+    clearscreen();
+    printf("INSERTION SORT\n");
+
+    // Transfer the array contents into a temp display array
+    for(i = 0; i < arraySize; i++) {
+        tempArray[i] = array[i];
+    }
+
+    // Display the original array
+    printf("\nOriginal Array:\n");
+    displayArray(tempArray, arraySize);
+    printf("\n");
+
+    k = 1;
     for(i = 1; i < arraySize; i++) {
         j = i;
-        B = array[i];
-        while(j > 0 && array[j - 1] > B) {
-            array[j] = array[j - 1];
+        B = tempArray[i];
+        while(j > 0 && tempArray[j - 1] > B) {
+            tempArray[j] = tempArray[j - 1];
             j--;
         }
-        array[j] = B;
+        tempArray[j] = B;
+        printf("\nArray after iteration %d:\n", k);
+        displayArray(tempArray, arraySize);
+        printf("\n");
+        k = k + 1;
     }
+    printf("\nSorting complete. Press any key to continue.\n");
+
+    getchar();
+    getchar();
 }
 
 void selectionSort(int array[], int arraySize) {
     /**
      * The selection sorting algorithm.
      */
-    int i, j, min, temp;
+    int i, j, k, min, temp;
+    int tempArray[arraySize];
+
+    clearscreen();
+    printf("SELECTION SORT\n");
+
+    // Transfer the array into a temporary display array
+    for(i = 0; i < arraySize; i++) {
+        tempArray[i] = array[i];
+    }
+
+    // Display the original array
+    printf("\nOriginal Array:\n");
+    displayArray(tempArray, arraySize);
+    printf("\n");
+
+    k = 1;
     for(i = 0; i < arraySize; i++) {
         min = i;
         for(j = i + 1; j < arraySize; j++) {
-            if(array[j] < array[min]) {
+            if(tempArray[j] < tempArray[min]) {
                 min = j;
             }
         }
         // Swap the values
-        temp = array[min];
-        array[min] = array[i];
-        array[i] = temp;
-    }
-}
+        temp = tempArray[min];
+        tempArray[min] = tempArray[i];
+        tempArray[i] = temp;
 
+        // Display the array
+        printf("\nArray after iteration %d:\n", k);
+        displayArray(tempArray, arraySize);
+        printf("\n");
+        k = k + 1;
+    }
+    printf("\nSorting complete. Press any key to continue.\n");
+
+    getchar();
+    getchar();
+}
 void bubbleSort(int array[], int arraySize) {
     /**
      * The bubble sorting algorithm.
@@ -67,6 +116,9 @@ void bubbleSort(int array[], int arraySize) {
     int i, j, k, temp;
     int tempArray[arraySize];
     
+    clearscreen();
+    printf("BUBBLE SORT\n");
+
     // Transfer the contents of the array to a temp array
     for(i = 0; i < arraySize; i++) {
         tempArray[i] = array[i];
@@ -75,6 +127,7 @@ void bubbleSort(int array[], int arraySize) {
     // Display the priginal array
     printf("\nOriginal Array:\n");
     displayArray(tempArray, arraySize);
+    printf("\n");
 
     k = 1;
     for(i = arraySize - 1; i > 0; i--) {
@@ -88,14 +141,21 @@ void bubbleSort(int array[], int arraySize) {
         }
         printf("\nArray after iteration %d:\n", k);
         displayArray(tempArray, arraySize);
+        printf("\n");
         k = k + 1;
     }
+    printf("\nSorting complete. Press any key to continue.\n");
+
+    getchar();
+    getchar();
 }
 
 void simulate(int arraySize) {
     int array[arraySize];
     int i;
     char opt;
+
+    clearscreen();
 
     // Initialize the values of the array to 0
     for(i = 0; i < arraySize; i++) {
@@ -114,6 +174,8 @@ void simulate(int arraySize) {
 
     // Now we have to make the user choose the sorting algo
     do {
+        clearscreen();
+
         printf("\nChoose your sorting algorithm:\n");
         printf("[a] Bubble\n");
         printf("[b] Selection\n");
@@ -121,7 +183,6 @@ void simulate(int arraySize) {
         printf("\n[q] Quit\n");
         printf("\nOption: ");
         
-        opt = getchar();
         opt = getchar();
         opt = tolower(opt);
 
