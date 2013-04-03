@@ -12,6 +12,58 @@
 #include <stdlib.h>
 #include "aldo.h" 
 
+void insertionSort(int array[], int arraySize) {
+    /** 
+     * The insertion sorting algorithm.
+     */
+    int i, j, B;
+    for(i = 1; i < arraySize; i++) {
+        j = i;
+        B = array[i];
+        while(j > 0 && array[j - 1] > B) {
+            array[j] = array[j - 1];
+            j--;
+        }
+        array[j] = B;
+    }
+}
+
+void selectionSort(int array[], int arraySize) {
+    /**
+     * The selection sorting algorithm.
+     */
+    int i, j, min, temp;
+    for(i = 0; i < arraySize; i++) {
+        min = i;
+        for(j = i + 1; j < arraySize; j++) {
+            if(array[j] < array[min]) {
+                min = j;
+            }
+        }
+        // Swap the values
+        temp = array[min];
+        array[min] = array[i];
+        array[i] = temp;
+    }
+}
+
+void bubbleSort(int array[], int arraySize) {
+    /**
+     * The bubble sorting algorithm.
+     */
+    int i, j, temp;
+    for(i = arraySize - 1; i > 0; i--) {
+        for(j = 0; j < i; j++) {
+            if(array[j] > array[j + 1]) {
+                // Swap the values
+                temp = array[j + 1];
+                array[j + 1] = array[j];
+                array[j] = temp;
+            }
+        }
+    }
+}
+
 void simulate(int arraySize) {
     int array[arraySize];
     int i;
@@ -39,12 +91,15 @@ void simulate(int arraySize) {
         switch(opt) {
             case 'a':
                 // Bubble sort
+                bubbleSort(array, arraySize);
                 break;
             case 'b':
                 // Selection sort
+                selectionSort(array, arraySize);
                 break;
             case 'c':
                 // Insertion sort
+                insertionSort(array, arraySize);
                 break;
         }
     }   while(opt != 'q');
