@@ -29,7 +29,7 @@ void insertionSort(int array[], int arraySize) {
     /** 
      * The insertion sorting algorithm.
      */
-    int i, j, k, B;
+    int i, j, k, B, comps;
     int tempArray[arraySize];
 
     clearscreen();
@@ -46,6 +46,7 @@ void insertionSort(int array[], int arraySize) {
     printf("\n");
 
     k = 1;
+    comps = 0;
     for(i = 1; i < arraySize; i++) {
         j = i;
         B = tempArray[i];
@@ -54,9 +55,10 @@ void insertionSort(int array[], int arraySize) {
             j--;
         }
         tempArray[j] = B;
+        comps += 1;
         printf("\nArray after iteration %d:\n", k);
         displayArray(tempArray, arraySize);
-        printf("\n");
+        printf("\nSwaps: %d\n", comps);
         k = k + 1;
     }
     printf("\nSorting complete. Press any key to continue.\n");
@@ -70,6 +72,7 @@ void selectionSort(int array[], int arraySize) {
      * The selection sorting algorithm.
      */
     int i, j, k, min, temp;
+    int comps, swaps;
     int tempArray[arraySize];
 
     clearscreen();
@@ -86,22 +89,25 @@ void selectionSort(int array[], int arraySize) {
     printf("\n");
 
     k = 1;
+    comps = swaps = 0;
     for(i = 0; i < arraySize; i++) {
         min = i;
         for(j = i + 1; j < arraySize; j++) {
             if(tempArray[j] < tempArray[min]) {
                 min = j;
             }
+            comps += 1;
         }
         // Swap the values
         temp = tempArray[min];
         tempArray[min] = tempArray[i];
         tempArray[i] = temp;
+        swaps += 1;
 
         // Display the array
         printf("\nArray after iteration %d:\n", k);
         displayArray(tempArray, arraySize);
-        printf("\n");
+        printf("\nComparisons: %d Swaps %d\n", comps, swaps);
         k = k + 1;
     }
     printf("\nSorting complete. Press any key to continue.\n");
@@ -114,6 +120,7 @@ void bubbleSort(int array[], int arraySize) {
      * The bubble sorting algorithm.
      */
     int i, j, k, temp;
+    int comps, swaps;
     int tempArray[arraySize];
     
     clearscreen();
@@ -130,6 +137,7 @@ void bubbleSort(int array[], int arraySize) {
     printf("\n");
 
     k = 1;
+    comps = swaps = 0;
     for(i = arraySize - 1; i > 0; i--) {
         for(j = 0; j < i; j++) {
             if(tempArray[j] > tempArray[j + 1]) {
@@ -137,11 +145,13 @@ void bubbleSort(int array[], int arraySize) {
                 temp = tempArray[j + 1];
                 tempArray[j + 1] = tempArray[j];
                 tempArray[j] = temp;
+                swaps += 1;
             }
+            comps += 1;
         }
         printf("\nArray after iteration %d:\n", k);
         displayArray(tempArray, arraySize);
-        printf("\n");
+        printf("\nComparisons: %d Swaps: %d\n", comps, swaps);
         k = k + 1;
     }
     printf("\nSorting complete. Press any key to continue.\n");
@@ -232,10 +242,12 @@ int main() {
                         printf("Invalid array size!\n");
                 }   while(arraySize <= 0);
                 simulate(arraySize);
+                getchar();
                 break;
             case 'q':
                 // User wants to quit
                 printf("Goodbye!\n");
+                getchar();
                 break;
         }
 
