@@ -10,13 +10,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "aldo.h" 
 
 void displayArray(int array[], int arraySize) {
     /*
      * Displays the given array inside a shiny box
      */
-    int i, boxWidth;
+    int i;
 
     printf("| ");
     for(i = 0; i < arraySize; i++) {

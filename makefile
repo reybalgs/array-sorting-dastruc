@@ -9,8 +9,8 @@
 # 		make clean
 
 CC=gcc
-sources=array-sorting.c
-EXECUTABLE=array-sorting-program
+SOURCES=array-sort.c
+EXECUTABLE=array-sorting
 CFLAGS=-Wall -Wextra -Werror
 
 # Setting up cleaning for either Linux or Windows
@@ -29,5 +29,4 @@ all:
 debug:
 	$(CC) $(SOURCES) -o $(EXECUTABLE) $(CFLAGS) -g
 clean:
-	$(RM) $(call FixPath, *.o ./array-sorting-program*)
-
+	$(RM) $(call FixPath, *.o ./array-sorting*)

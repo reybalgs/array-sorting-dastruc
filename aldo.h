@@ -18,13 +18,3 @@ void clearscreen() {
     #endif
 }
 
-char inputChar() {
-    /*
-     * A function that facilitates the handling of one-character inputs,
-     * automatically removing newlines whenever necessary.
-     */
-    char in = 0;
-    fflush(stdin);
-    
-    
-}
