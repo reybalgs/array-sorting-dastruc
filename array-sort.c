@@ -58,7 +58,7 @@ void insertionSort(int array[], int arraySize) {
         comps += 1;
         printf("\nArray after iteration %d:\n", k);
         displayArray(tempArray, arraySize);
-        printf("\nSwaps: %d\n", comps);
+        printf("\nComps: %d\n", comps);
         k = k + 1;
     }
     printf("\nSorting complete. Press any key to continue.\n");
@@ -115,7 +115,7 @@ void selectionSort(int array[], int arraySize) {
     getchar();
     getchar();
 }
-void bubbleSort(int array[], int arraySize) {
+void bubbleSort(int array[], int arraySize, int instant) {
     /**
      * The bubble sorting algorithm.
      */
@@ -153,6 +153,11 @@ void bubbleSort(int array[], int arraySize) {
         displayArray(tempArray, arraySize);
         printf("\nComparisons: %d Swaps: %d\n", comps, swaps);
         k = k + 1;
+
+        // Pause if we're not on instant sorting
+        if(!instant) {
+            getchar();
+        }
     }
     printf("\nSorting complete. Press any key to continue.\n");
 
@@ -163,7 +168,7 @@ void bubbleSort(int array[], int arraySize) {
 void simulate(int arraySize) {
     int array[arraySize];
     int i;
-    char opt;
+    char opt, opt2;
 
     clearscreen();
 
@@ -199,7 +204,16 @@ void simulate(int arraySize) {
         switch(opt) {
             case 'a':
                 // Bubble sort
-                bubbleSort(array, arraySize);
+                printf("\nWould you like to do it step-by-step? [y/n]: ");
+                
+                opt2 = getchar();
+                opt2 = getchar();
+                opt2 = tolower(opt);
+
+                if(opt2 == 'y')
+                    bubbleSort(array, arraySize, 1);
+                else
+                    bubbleSort(array, arraySize, 0);
                 break;
             case 'b':
                 // Selection sort
