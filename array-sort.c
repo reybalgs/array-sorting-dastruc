@@ -25,7 +25,7 @@ void displayArray(int array[], int arraySize) {
     }
 }
 
-void insertionSort(int array[], int arraySize) {
+void insertionSort(int array[], int arraySize, int instant) {
     /** 
      * The insertion sorting algorithm.
      */
@@ -60,6 +60,11 @@ void insertionSort(int array[], int arraySize) {
         displayArray(tempArray, arraySize);
         printf("\nComps: %d\n", comps);
         k = k + 1;
+
+        // Pause if we're not on instant conversion
+        if(!instant) {
+            getchar();
+        }
     }
     printf("\nSorting complete. Press any key to continue.\n");
 
@@ -230,7 +235,15 @@ void simulate(int arraySize) {
                 break;
             case 'c':
                 // Insertion sort
-                insertionSort(array, arraySize);
+                printf("\nWould you like to do it step-by-step? [y/n]: ");
+                
+                scanf(" %c%*c", &opt2);
+                opt2 = tolower(opt2);
+
+                if(opt2 == 'y')
+                    insertionSort(array, arraySize, 0);
+                else
+                    insertionSort(array, arraySize, 1);
                 break;
             case 'q':
                 // Quitting
