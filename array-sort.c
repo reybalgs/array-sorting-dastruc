@@ -64,10 +64,9 @@ void insertionSort(int array[], int arraySize) {
     printf("\nSorting complete. Press any key to continue.\n");
 
     getchar();
-    getchar();
 }
 
-void selectionSort(int array[], int arraySize) {
+void selectionSort(int array[], int arraySize, int instant) {
     /**
      * The selection sorting algorithm.
      */
@@ -109,10 +108,14 @@ void selectionSort(int array[], int arraySize) {
         displayArray(tempArray, arraySize);
         printf("\nComparisons: %d Swaps %d\n", comps, swaps);
         k = k + 1;
+
+        // Pause if we are not on instant sorting
+        if(!instant) {
+            getchar();
+        }
     }
     printf("\nSorting complete. Press any key to continue.\n");
 
-    getchar();
     getchar();
 }
 void bubbleSort(int array[], int arraySize, int instant) {
@@ -162,7 +165,6 @@ void bubbleSort(int array[], int arraySize, int instant) {
     printf("\nSorting complete. Press any key to continue.\n");
 
     getchar();
-    getchar();
 }
 
 void simulate(int arraySize) {
@@ -180,7 +182,7 @@ void simulate(int arraySize) {
     // First we need to input the values for the array
     for(i = 0; i < arraySize; i++) {
         printf("Enter value for index %d: ", i);
-        scanf("%d", &array[i]);
+        scanf(" %d%*c", &array[i]);
     }
 
     // Display the array.
@@ -197,8 +199,8 @@ void simulate(int arraySize) {
         printf("[c] Insertion\n");
         printf("\n[q] Quit\n");
         printf("\nOption: ");
-        
-        opt = getchar();
+       
+        scanf(" %c%*c", &opt);
         opt = tolower(opt);
 
         switch(opt) {
@@ -206,22 +208,33 @@ void simulate(int arraySize) {
                 // Bubble sort
                 printf("\nWould you like to do it step-by-step? [y/n]: ");
                 
-                opt2 = getchar();
-                opt2 = getchar();
-                opt2 = tolower(opt);
+                scanf(" %c%*c", &opt2);
+                opt2 = tolower(opt2);
 
                 if(opt2 == 'y')
-                    bubbleSort(array, arraySize, 1);
-                else
                     bubbleSort(array, arraySize, 0);
+                else
+                    bubbleSort(array, arraySize, 1);
                 break;
             case 'b':
                 // Selection sort
-                selectionSort(array, arraySize);
+                printf("\nWould you like to do it step-by-step? [y/n]: ");
+                
+                scanf(" %c%*c", &opt2);
+                opt2 = tolower(opt2);
+
+                if(opt2 == 'y')
+                    selectionSort(array, arraySize, 0);
+                else
+                    selectionSort(array, arraySize, 1);
                 break;
             case 'c':
                 // Insertion sort
                 insertionSort(array, arraySize);
+                break;
+            case 'q':
+                // Quitting
+                printf("Press enter again to quit.\n");
                 break;
         }
     }   while(opt != 'q');
@@ -239,10 +252,8 @@ int main() {
         printf("[a] Simulate\n");
         printf("[q] Quit\n");
 
-        opt = getchar();
+        scanf(" %c%*c", &opt);
         opt = tolower(opt);
-
-        printf("Opt: %c\n", opt);
 
         switch(opt) {
             case 'a':
@@ -250,7 +261,7 @@ int main() {
                 // Get the size of the array
                 do {
                     printf("Enter your array size: ");
-                    scanf("%d", &arraySize);
+                    scanf(" %d%*c", &arraySize);
 
                     if(arraySize <= 0)
                         printf("Invalid array size!\n");
