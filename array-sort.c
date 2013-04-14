@@ -258,11 +258,10 @@ int main() {
     char opt;
     int arraySize;
 
-    clearscreen();
-
-    printf("Array sort simulator\n\n");
-
     do {
+        clearscreen();
+
+        printf("Array sort simulator\n\n");
         printf("[a] Simulate\n");
         printf("[q] Quit\n");
 
