@@ -52,14 +52,14 @@ void insertionSort(int array[], int arraySize, int instant) {
         j = i;
         B = tempArray[i];
         while(j > 0 && tempArray[j - 1] > B) {
+            comps += 1;
             tempArray[j] = tempArray[j - 1];
             j--;
         }
         tempArray[j] = B;
-        comps += 1;
         printf("\nArray after iteration %d:\n", k);
         displayArray(tempArray, arraySize);
-        printf("\nComps: %d\n", comps);
+        printf("\nComparisons: %d\n", comps);
         k = k + 1;
 
         // Pause if we're not on instant conversion
@@ -112,7 +112,7 @@ void selectionSort(int array[], int arraySize, int instant) {
         // Display the array
         printf("\nArray after iteration %d:\n", k);
         displayArray(tempArray, arraySize);
-        printf("\nComparisons: %d Swaps %d\n", comps, swaps);
+        printf("\nComparisons: %d Swaps: %d\n", comps, swaps);
         k = k + 1;
 
         // Pause if we are not on instant sorting
@@ -191,15 +191,15 @@ void simulate(int arraySize) {
         scanf(" %d%*c", &array[i]);
     }
 
-    // Display the array.
-    printf("Your array:\n");
-    displayArray(array, arraySize);
-
     // Now we have to make the user choose the sorting algo
     do {
         clearscreen();
 
-        printf("\nChoose your sorting algorithm:\n");
+        // Display the array.
+        printf("Your array:\n");
+        displayArray(array, arraySize);
+
+        printf("\n\nChoose your sorting algorithm:\n");
         printf("[a] Bubble\n");
         printf("[b] Selection\n");
         printf("[c] Insertion\n");
@@ -261,7 +261,8 @@ int main() {
     do {
         clearscreen();
 
-        printf("Array sort simulator\n\n");
+        printf("Array sort simulator\n");
+        printf("Created by Aldo Rey Balagulan\n\n");
         printf("[a] Simulate\n");
         printf("[q] Quit\n");
 
